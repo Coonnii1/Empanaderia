@@ -1,8 +1,8 @@
-/* ===========================
-   Empanadería La Chilena v4.0 - Lógica de Negocio y SPA
-   =========================== */
+/* =========================================================
+   Empanadería La Chilena v5.1 - Lógica de Negocio y SPA
+   ========================================================= */
 
-/* ====== Productos (dibujos ilustrados) (MODIFICADO: AÑADIDO 'tipo' y más productos) ====== */
+/* ====== Productos Principales (Catálogo de Empanadas) ====== */
 const PRODUCTS = [
   {
     id: 1,
@@ -11,6 +11,7 @@ const PRODUCTS = [
     precio: 1500,
     ingredientes: "Carne, cebolla, huevo duro, aceitunas y pasas.",
     tipo: "Horno",
+    stock: 25, 
     img: "https://www.tipicochileno.cl/wp-content/uploads/2021/05/empanada-chilena-1200-628.jpg",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 },
@@ -25,6 +26,7 @@ const PRODUCTS = [
     precio: 1300,
     ingredientes: "Masa dorada rellena de queso derretido.",
     tipo: "Frita",
+    stock: 30, 
     img: "https://i.ytimg.com/vi/RKZrqSeSXEE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA2wr8xqXSJ-2cCYBWDP5MYq8xqLA",
     extras: [
       { id: "mayo", name: "Mayonesa", price: 200 },
@@ -38,6 +40,7 @@ const PRODUCTS = [
     precio: 1800,
     ingredientes: "Queso, tomate y orégano al estilo napolitano.",
     tipo: "Horno",
+    stock: 18, 
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLDdIXFqZ1-YaVCciF3hIAn_5-vRfzwM5tbg&s",
     extras: [
       { id: "queso", name: "Queso extra", price: 400 },
@@ -51,6 +54,7 @@ const PRODUCTS = [
     precio: 1600,
     ingredientes: "Pollo desmenuzado con cebolla y condimentos suaves.",
     tipo: "Horno",
+    stock: 12, 
     img: "https://campollo.com/wp-content/uploads/2024/08/RECETA-DE-EMPANADAS-DE-POLLO-AGOSTO-scaled.jpg",
     extras: [
       { id: "salsa", name: "Salsa BBQ", price: 250 }
@@ -63,6 +67,7 @@ const PRODUCTS = [
     precio: 1400,
     ingredientes: "Verduras salteadas, champiñones y especias naturales.",
     tipo: "Frita",
+    stock: 8, 
     img: "https://media-cdn.tripadvisor.com/media/photo-s/1c/b9/89/7b/empanada-vegetariana.jpg",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 }
@@ -75,6 +80,7 @@ const PRODUCTS = [
     precio: 2200,
     ingredientes: "Relleno de mariscos frescos con crema y especias.",
     tipo: "Horno",
+    stock: 5, 
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2lgMte0jg9vit7VkGL5Iy8fedL7G8MbrYwQ&s",
     extras: [
       { id: "limon", name: "Limón extra", price: 150 }
@@ -87,6 +93,7 @@ const PRODUCTS = [
     precio: 2500,
     ingredientes: "Camarones salteados en mantequilla con queso mantecoso.",
     tipo: "Frita",
+    stock: 15, 
     img: "https://www.chefandcook.cl/carta/camaron-queso-fritas.jpg",
     extras: [
       { id: "limon", name: "Limón extra", price: 150 }
@@ -99,6 +106,7 @@ const PRODUCTS = [
     precio: 1700,
     ingredientes: "Champiñones frescos salteados con mezcla de quesos.",
     tipo: "Horno",
+    stock: 10, 
     img: "https://cdnx.jumpseller.com/lashermanaschicureo/image/57887757/emp_champi_on.jpg?1733160292",
     extras: [
       { id: "salsa", name: "Salsa de ajo", price: 250 }
@@ -111,6 +119,7 @@ const PRODUCTS = [
     precio: 1450,
     ingredientes: "Acelga cocida y cremosa con abundante queso.",
     tipo: "Frita",
+    stock: 20, 
     img: "https://www.clarin.com/img/2023/04/25/Gc7v0hFUU_1256x620__2.jpg",
     extras: []
   },
@@ -121,6 +130,7 @@ const PRODUCTS = [
     precio: 2100,
     ingredientes: "Carne mechada deshilachada con cebolla caramelizada.",
     tipo: "Horno",
+    stock: 7, 
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRje62PefsWjkW_fVWxGpwi-fOH16QYnnwRNw&s",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 }
@@ -128,13 +138,49 @@ const PRODUCTS = [
   }
 ];
 
-/* ====== Variables globales (AÑADIDAS: resetToken, discountApplied) ====== */
+/* ====== Acompañamientos (Catálogo Secundario) ====== */
+const ACCOMPANIMENTS = [
+  {
+    id: 101,
+    nombre: "Coca-Cola Zero 1.5L",
+    precio: 1900,
+    tipo: "Bebida",
+    img: "https://jumbo.cl/media/catalog/product/6/8/6835.jpg", // URL genérica
+    stock: 25 
+  },
+  {
+    id: 102,
+    nombre: "Palitos de Queso (porción)",
+    precio: 1200,
+    tipo: "Snack",
+    img: "https://jumbo.cl/media/catalog/product/1/9/19503.jpg", // URL genérica
+    stock: 18 
+  },
+  {
+    id: 103,
+    nombre: "Pebre Casero (100ml)",
+    precio: 600,
+    tipo: "Salsa",
+    img: "https://www.tipicochileno.cl/wp-content/uploads/2022/01/Pebre-Casero.jpg", // URL genérica
+    stock: 35 
+  },
+  {
+    id: 104,
+    nombre: "Jugo Natural (500ml)",
+    precio: 1500,
+    tipo: "Bebida",
+    img: "https://jumbo.cl/media/catalog/product/j/u/jugo_natural.jpg", // URL genérica
+    stock: 20
+  }
+];
+
+/* ====== Variables globales (Persistencia con localStorage) ====== */
 let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 let users = JSON.parse(localStorage.getItem("users") || "[]");
 let currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
 let orders = JSON.parse(localStorage.getItem("orders") || "[]");
-let resetToken = JSON.parse(localStorage.getItem("resetToken") || "null"); // Token para recuperar contraseña
-let discountApplied = JSON.parse(localStorage.getItem("discountApplied") || "null"); // Descuento aplicado
+let resetToken = JSON.parse(localStorage.getItem("resetToken") || "null");
+let discountApplied = JSON.parse(localStorage.getItem("discountApplied") || "null");
 
 // Códigos de descuento disponibles (simulados)
 const DISCOUNT_CODES = [
@@ -142,18 +188,19 @@ const DISCOUNT_CODES = [
   { code: "EMPANADA500", type: "fixed", value: 500, description: "$500 de descuento fijo" }
 ];
 
-
 /* ====== Inicialización ====== */
 document.addEventListener("DOMContentLoaded", () => {
   setupNav();
   renderCatalog();
+  renderAccompaniments(); // Cargar acompañamientos
   renderCart();
   loadCategories();
-  loadTypes(); // Cargar los tipos (Horno/Frita)
+  loadTypes();
   updateLoginButton(!!currentUser);
+  updateCartCount(); // Iniciar contador
 });
 
-/* ====== Navegación ====== */
+/* ====== Utilidades (Navegación, Notificación, Guardado) ====== */
 function setupNav() {
   document.querySelectorAll(".nav-btn").forEach(btn => {
     const view = btn.dataset.view;
@@ -170,36 +217,41 @@ function showView(view) {
   if (target) target.classList.add("active");
   window.scrollTo(0, 0);
 }
-/* ====== Contador del carrito (NUEVO) ====== */
-function updateCartCount() {
-    const count = cart.reduce((total, item) => total + item.cantidad, 0);
-    const countElement = document.getElementById('cartCount');
-    if (countElement) {
-        countElement.textContent = count;
-        // Ocultar si está vacío
-        countElement.style.display = count > 0 ? 'block' : 'none'; 
-    }
+
+function notify(msg) {
+  const n = document.getElementById("notification");
+  n.textContent = msg;
+  n.classList.add("show");
+  setTimeout(() => n.classList.remove("show"), 2500);
 }
-/* ====== Catálogo (MODIFICADO: Búsqueda por Tipo e Ingredientes) ====== */
+
+function saveData() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  localStorage.setItem("orders", JSON.stringify(orders));
+  localStorage.setItem("resetToken", JSON.stringify(resetToken));
+  localStorage.setItem("discountApplied", JSON.stringify(discountApplied));
+}
+
+/* ====== Catálogo Principal (Empanadas) y Filtros ====== */
 function renderCatalog() {
   const container = document.getElementById("catalogContainer");
   container.innerHTML = "";
   const q = document.getElementById("searchInput").value.toLowerCase();
   const cat = document.getElementById("categoryFilter").value;
-  const type = document.getElementById("typeFilter").value; // Obtener filtro Tipo
+  const type = document.getElementById("typeFilter").value;
   const price = document.getElementById("priceFilter").value;
 
   let list = PRODUCTS.filter(p => {
     if (cat && p.categoria !== cat) return false;
     
-    // Criterio de búsqueda (nombre, ingredientes o tipo)
     if (q && !(
         p.nombre.toLowerCase().includes(q) || 
         p.ingredientes.toLowerCase().includes(q) || 
         p.tipo.toLowerCase().includes(q)
     )) return false;
     
-    // Criterio de filtro por tipo (si se selecciona un valor en el dropdown)
     if (type && p.tipo !== type) return false; 
     
     if (price) {
@@ -217,18 +269,25 @@ function renderCatalog() {
   list.forEach(p => {
     const div = document.createElement("div");
     div.className = "item-card";
+    
+    const isLowStock = p.stock <= 5 && p.stock > 0;
+    const stockMsg = isLowStock ? 
+        `<small style="color: #c0392b; font-weight: bold;">¡Últimas unidades!</small><br>` : '';
+
     div.innerHTML = `
       <img src="${p.img}" alt="${p.nombre}">
       <h4>${p.nombre}</h4>
       <small>Tipo: <strong>${p.tipo}</strong></small><br>
+      ${stockMsg}
       <small>${p.ingredientes}</small>
       <div class="price">$${p.precio.toLocaleString()}</div>
-      <button class="btn primary" onclick="openProduct(${p.id})">Ver detalles</button>
+      <button class="btn primary" onclick="openProduct(${p.id})" ${p.stock <= 0 ? 'disabled' : ''}>${p.stock <= 0 ? 'Agotado' : 'Ver detalles'}</button>
     `;
     container.appendChild(div);
   });
 }
 
+// Event Listeners para Filtros
 document.getElementById("searchInput").oninput = renderCatalog;
 document.getElementById("categoryFilter").onchange = renderCatalog;
 document.getElementById("typeFilter").onchange = renderCatalog;
@@ -264,7 +323,32 @@ function loadTypes() {
   });
 }
 
-/* ====== Modal Producto ====== */
+/* ====== Catálogo de Acompañamientos ====== */
+function renderAccompaniments() {
+  const container = document.getElementById("accompanimentContainer");
+  container.innerHTML = "";
+
+  ACCOMPANIMENTS.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "item-card accompaniment";
+    
+    const isLowStock = p.stock <= 5 && p.stock > 0;
+    const stockMsg = isLowStock ? 
+        `<small style="color: #c0392b; font-weight: bold;">¡Últimas unidades!</small><br>` : '';
+
+    div.innerHTML = `
+      <img src="${p.img}" alt="${p.nombre}">
+      <h4>${p.nombre}</h4>
+      <small>Tipo: <strong>${p.tipo}</strong></small>
+      ${stockMsg}
+      <div class="price">$${p.precio.toLocaleString()}</div>
+      <button class="btn primary" onclick="addToCartAccompaniment(${p.id})" ${p.stock <= 0 ? 'disabled' : ''}>${p.stock <= 0 ? 'Agotado' : 'Añadir'}</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+/* ====== Modal Producto (Empanadas) ====== */
 function openProduct(id) {
   const p = PRODUCTS.find(x => x.id === id);
   const modal = document.getElementById("modal");
@@ -272,13 +356,14 @@ function openProduct(id) {
 
   body.innerHTML = `
     <h3>${p.nombre} (${p.tipo})</h3>
+    <p><strong>Stock disponible:</strong> ${p.stock}</p>
     <p><strong>Ingredientes:</strong> ${p.ingredientes}</p>
     <p><strong>Precio base:</strong> $${p.precio.toLocaleString()}</p>
     <h4>Extras:</h4>
     ${p.extras.map(ex => `
       <label><input type="checkbox" value="${ex.id}" data-price="${ex.price}"> ${ex.name} (+$${ex.price})</label><br>
     `).join("") || "<p>Sin extras disponibles.</p>"}
-    <input type="number" id="qty" value="1" min="1" style="width:60px;margin-top:10px">
+    <input type="number" id="qty" value="1" min="1" max="${p.stock}" style="width:60px;margin-top:10px">
     <button class="btn primary" id="addBtn">Agregar al carrito</button>
   `;
   document.getElementById("addBtn").onclick = () => addToCart(id);
@@ -292,20 +377,62 @@ document.getElementById("modal").onclick = e => {
   if (e.target.id === "modal") e.target.classList.remove("active");
 };
 
-/* ====== Carrito (MODIFICADO: Integración de descuentos) ====== */
+/* ====== Carrito, Stock y Descuentos ====== */
+function getProductById(id) {
+    return PRODUCTS.find(p => p.id === id) || ACCOMPANIMENTS.find(p => p.id === id);
+}
+
+function countItemInCart(productId) {
+    return cart
+        .filter(item => item.id === productId)
+        .reduce((sum, item) => sum + item.cantidad, 0);
+}
+
 function addToCart(id) {
   const p = PRODUCTS.find(x => x.id === id);
-  const qty = parseInt(document.getElementById("qty").value);
+  const qtyToAdd = parseInt(document.getElementById("qty").value);
+
+  const currentCartStock = countItemInCart(p.id);
+
+  if (p.stock < currentCartStock + qtyToAdd) {
+    return notify(`❌ Solo quedan ${p.stock - currentCartStock} unidades de ${p.nombre}.`);
+  }
+
   const extras = [...document.querySelectorAll("#modalBody input[type=checkbox]:checked")].map(ch => {
     const ex = p.extras.find(e => e.id === ch.value);
     return { name: ex.name, price: ex.price };
   });
 
-  cart.push({ id: p.id, nombre: p.nombre, cantidad: qty, extras, precio: p.precio });
+  cart.push({ id: p.id, nombre: p.nombre, cantidad: qtyToAdd, extras, precio: p.precio });
   saveData();
   renderCart();
   notify("✅ Producto agregado al carrito");
   document.getElementById("modal").classList.remove("active");
+  updateCartCount();
+}
+
+function addToCartAccompaniment(id) {
+    const p = ACCOMPANIMENTS.find(x => x.id === id);
+    const qtyToAdd = 1;
+
+    const currentCartStock = countItemInCart(p.id);
+
+    if (p.stock < currentCartStock + qtyToAdd) {
+        return notify(`❌ Solo quedan ${p.stock - currentCartStock} unidades de ${p.nombre}.`);
+    }
+
+    const existingItemIndex = cart.findIndex(item => item.id === p.id && (!item.extras || item.extras.length === 0));
+
+    if (existingItemIndex !== -1) {
+        cart[existingItemIndex].cantidad++;
+    } else {
+        cart.push({ id: p.id, nombre: p.nombre, cantidad: qtyToAdd, extras: [], precio: p.precio });
+    }
+    
+    saveData();
+    renderCart();
+    notify(`✅ ${p.nombre} agregado al carrito`);
+    updateCartCount();
 }
 
 function renderCart() {
@@ -315,6 +442,7 @@ function renderCart() {
   if (!cart.length) {
     document.getElementById("emptyCartMsg").style.display = "block";
     document.querySelector('.cart-summary').innerHTML = '';
+    updateCartCount();
     return;
   }
 
@@ -331,9 +459,9 @@ function renderCart() {
       </div>
       <div>
         <strong>$${total.toLocaleString()}</strong><br>
-        <button class="btn secondary" onclick="decQty(${i})">-</button>
-        <button class="btn secondary" onclick="incQty(${i})">+</button>
-        <button class="btn" style="background:#f8d6d6;color:#a33" onclick="delItem(${i})">Eliminar</button>
+        <button class="btn secondary" onclick="decQty(${i})">➖</button>
+        <button class="btn secondary" onclick="incQty(${i})">➕</button>
+        <button class="btn" style="background:#f8d6d6;color:#a33" onclick="delItem(${i})">🗑️</button>
       </div>
     `;
     list.appendChild(li);
@@ -342,7 +470,6 @@ function renderCart() {
   const totalBruto = calcBaseTotal();
   const { finalTotal, discountAmount, discountText } = applyDiscount(totalBruto);
 
-  // RENDERIZAR RESUMEN DEL CARRITO (AÑADIDO EL CÓDIGO DE DESCUENTO)
   const summaryContainer = document.querySelector('.cart-summary');
   summaryContainer.innerHTML = `
     <div id="discountContainer" style="margin-bottom: 10px; display: flex; gap: 10px; justify-content: flex-end; align-items: center;">
@@ -354,7 +481,7 @@ function renderCart() {
          <p style="text-align: right;"><strong>Subtotal:</strong> $<span id="cartTotalBruto">${totalBruto.toLocaleString()}</span></p>`
         : ''
     }
-    <p style="text-align: right;"><strong>Total a pagar:</strong> $<span id="cartTotal">${finalTotal.toLocaleString()}</span></p>
+    <p style="text-align: right; font-size: 1.2em;"><strong>Total a pagar:</strong> $<span id="cartTotal">${finalTotal.toLocaleString()}</span></p>
     <button id="clearCart" class="btn secondary" style="margin-right: 10px;">Vaciar carrito</button>
     <button id="checkoutBtn" class="btn primary">Finalizar compra</button>
   `;
@@ -362,14 +489,13 @@ function renderCart() {
   document.getElementById("clearCart").onclick = () => { cart = []; discountApplied = null; saveData(); renderCart(); };
   document.getElementById("checkoutBtn").onclick = checkout;
   document.getElementById("applyDiscountBtn").onclick = applyDiscountCode;
+  updateCartCount();
 }
 
-// Calcula el total del carrito (bruto, sin descuentos)
 function calcBaseTotal() {
   return cart.reduce((t, it) => t + (it.precio + it.extras.reduce((a,b)=>a+b.price,0))*it.cantidad, 0);
 }
 
-// Aplica la lógica de descuento
 function applyDiscount(total) {
   let discountAmount = 0;
   let discountText = "";
@@ -392,7 +518,6 @@ function applyDiscount(total) {
   return { finalTotal, discountAmount, discountText };
 }
 
-// Función para aplicar el código ingresado por el usuario
 function applyDiscountCode() {
   const inputCode = document.getElementById("discountInput").value.toUpperCase().trim();
   const codeObject = DISCOUNT_CODES.find(d => d.code === inputCode);
@@ -420,11 +545,49 @@ function applyDiscountCode() {
   }
 }
 
+function updateCartCount() {
+    const count = cart.reduce((total, item) => total + item.cantidad, 0);
+    const countElement = document.getElementById('cartCount');
+    if (countElement) {
+        countElement.textContent = count;
+        countElement.style.display = count > 0 ? 'block' : 'none'; 
+    }
+}
 
-function incQty(i){ cart[i].cantidad++; saveData(); renderCart(); }
-function decQty(i){ if(cart[i].cantidad>1) cart[i].cantidad--; saveData(); renderCart(); }
-function delItem(i){ cart.splice(i,1); saveData(); renderCart(); }
+function incQty(i){ 
+    const item = cart[i];
+    const product = getProductById(item.id);
 
+    if (!product) return;
+    
+    const currentCartStock = cart
+        .filter((_, index) => index !== i && _.id === product.id)
+        .reduce((sum, current) => sum + current.cantidad, 0);
+
+    if (product.stock > currentCartStock + item.cantidad) {
+        cart[i].cantidad++; 
+        saveData(); 
+        renderCart(); 
+    } else {
+        notify(`❌ Límite de stock (${product.stock}) alcanzado para ${product.nombre}.`);
+    }
+}
+
+function decQty(i){ 
+    if(cart[i].cantidad > 1) { 
+        cart[i].cantidad--; 
+        saveData(); 
+        renderCart(); 
+    }
+}
+
+function delItem(i){ 
+    cart.splice(i,1); 
+    saveData(); 
+    renderCart(); 
+}
+
+/* ====== Checkout y Confirmación ====== */
 function checkout() {
   if (!currentUser) return notify("⚠️ Inicia sesión para finalizar la compra");
   if (!cart.length) return notify("🛒 El carrito está vacío");
@@ -436,7 +599,9 @@ function checkout() {
   const body = document.getElementById("modalBody");
   body.innerHTML = `
     <h3>Confirmar pedido</h3>
-    <p>Total a pagar: <strong>$${finalTotal.toLocaleString()}</strong></p>
+    <p>Tu dirección: <strong>${currentUser.address}</strong></p>
+    <p>Tu teléfono: <strong>${currentUser.phone}</strong></p>
+    <p style="font-size: 1.2em;">Total a pagar: <strong>$${finalTotal.toLocaleString()}</strong></p>
     ${discountApplied ? `<p style="color: #27ae60;">(Incluye descuento ${discountApplied.code})</p>` : ''}
     <h4>Forma de pago:</h4>
     <label><input type="radio" name="pago" value="efectivo" checked> Efectivo</label><br>
@@ -447,7 +612,6 @@ function checkout() {
   modal.classList.add("active");
 }
 
-/* ====== Confirmación de pago ====== */
 function confirmOrder() {
   const metodo = document.querySelector("input[name='pago']:checked").value;
   const totalBruto = calcBaseTotal();
@@ -477,10 +641,7 @@ function confirmOrder() {
   } else if (metodo === "transferencia") {
     mensaje = `
       🏦 Realiza tu transferencia a:<br>
-      <strong>Banco Estado</strong><br>
-      Cuenta: 12345678<br>
-      Titular: Empanadería La Chilena<br>
-      Correo: pagos@lachilena.cl
+      <strong>Banco Estado</strong>, Cuenta: 12345678, Correo: pagos@lachilena.cl
     `;
   } else if (metodo === "tarjeta") {
     mensaje = "💳 Pago con tarjeta al momento del retiro.";
@@ -504,7 +665,7 @@ function confirmOrder() {
   notify("🎉 Pedido confirmado con " + metodo);
 }
 
-/* ====== Login / Registro (MODIFICADO: con más campos) ====== */
+/* ====== Login / Registro y Recuperación (Completo) ====== */
 document.getElementById("registerBtn").onclick = () => {
   const name = document.getElementById("nameInput").value.trim();
   const address = document.getElementById("addressInput").value.trim();
@@ -564,7 +725,7 @@ function updateLoginButton(logged) {
     btn.textContent = "Cerrar sesión";
     btn.onclick = () => {
       currentUser = null;
-      discountApplied = null; // Limpiar descuento al cerrar sesión
+      discountApplied = null;
       saveData();
       updateLoginButton(false);
       notify("👋 Sesión cerrada");
@@ -576,7 +737,6 @@ function updateLoginButton(logged) {
   }
 }
 
-/* ====== Flujo de Olvidé mi Contraseña (NUEVO) ====== */
 document.getElementById("forgotPasswordBtn").onclick = openRecoveryFlow;
 document.getElementById("forgotPasswordBtn").style.cssText = 'margin-top: 10px; background: none; border: none; color: #a92c2c; font-weight: 400; text-decoration: underline;';
 
@@ -592,7 +752,7 @@ function openRecoveryFlow() {
     }
 
     const token = Math.random().toString(36).substring(2, 10).toUpperCase();
-    const expiryTime = Date.now() + 5 * 60 * 1000; // 5 minutos de validez
+    const expiryTime = Date.now() + 5 * 60 * 1000;
 
     resetToken = { email, token, expiry: expiryTime };
     saveData();
@@ -684,23 +844,6 @@ document.querySelector("[data-view='orders']").onclick = () => {
   showView("orders");
 };
 
-/* ====== Notificación visual ====== */
-function notify(msg) {
-  const n = document.getElementById("notification");
-  n.textContent = msg;
-  n.classList.add("show");
-  setTimeout(() => n.classList.remove("show"), 2500);
-}
-
-/* ====== Guardado (AÑADIDO: resetToken y discountApplied) ====== */
-function saveData() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-  localStorage.setItem("users", JSON.stringify(users));
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  localStorage.setItem("orders", JSON.stringify(orders));
-  localStorage.setItem("resetToken", JSON.stringify(resetToken));
-  localStorage.setItem("discountApplied", JSON.stringify(discountApplied));
-}
 
 
 
