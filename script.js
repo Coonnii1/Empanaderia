@@ -189,20 +189,56 @@ document.getElementById("modal").onclick = e => {
 };
 
 /* ====== Carrito ====== */
-function addToCart(id) {
-  const p = PRODUCTS.find(x => x.id === id);
-  const qty = parseInt(document.getElementById("qty").value);
-  const extras = [...document.querySelectorAll("#modalBody input[type=checkbox]:checked")].map(ch => {
-    const ex = p.extras.find(e => e.id === ch.value);
-    return { name: ex.name, price: ex.price };
-  });
+function confirmOrder() {
+  const metodo = document.querySelector("input[name='pago']:checked").value;
+  const order = {
+    id: "PED-" + Date.now(),
+    user: currentUser.email,
+    items: cart,
+    total: calcTotal(),
+    metodo,
+    date: new Date().toLocaleString()
+  };
 
-  cart.push({ id: p.id, nombre: p.nombre, cantidad: qty, extras, precio: p.precio });
+  orders.push(order);
+  cart = [];
   saveData();
   renderCart();
-  notify("✅ Producto agregado al carrito");
+
+  // Crear texto dinámico según método
+  let mensaje = "";
+  if (metodo === "efectivo") {
+    mensaje = "Podrás pagar al momento de retirar tu pedido 💵";
+  } else if (metodo === "transferencia") {
+    mensaje = `
+      Realiza tu transferencia a:<br>
+      <strong>Banco Estado</strong><br>
+      Cuenta: 12345678<br>
+      Titular: Empanadería La Chilena<br>
+      Correo: pagos@lachilena.cl
+    `;
+  } else if (metodo === "tarjeta") {
+    mensaje = "Serás redirigido al pago con tarjeta al momento del retiro 💳";
+  }
+
+  // Mostrar vista de confirmación
+  const container = document.getElementById("paymentContainer");
+  container.innerHTML = `
+    <h3>✅ Pedido confirmado</h3>
+    <p><strong>N° Pedido:</strong> ${order.id}</p>
+    <p><strong>Método de pago:</strong> ${metodo.toUpperCase()}</p>
+    <p>${mensaje}</p>
+    <p><strong>Total pagado:</strong> $${order.total.toLocaleString()}</p>
+    <p>Gracias por tu compra 🥟</p>
+    <button class="btn primary" onclick="showView('catalog')">Volver al Catálogo</button>
+    <button class="btn secondary" onclick="showView('orders')">Ver mis pedidos</button>
+  `;
+
   document.getElementById("modal").classList.remove("active");
+  showView("payment");
+  notify("🎉 Pedido confirmado con " + metodo);
 }
+
 
 function renderCart() {
   const list = document.getElementById("cartList");
@@ -361,6 +397,7 @@ function saveData() {
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   localStorage.setItem("orders", JSON.stringify(orders));
 }
+
 
 
 
