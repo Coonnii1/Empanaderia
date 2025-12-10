@@ -5,90 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Empanadería La Chilena</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/857/857681.png" type="image/png">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/701/701979.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Encabezado -->
+  <!-- HEADER -->
   <header class="main-header">
-    <h1 class="logo-text">🥟 Empanadería <span>La Chilena</span></h1>
+    <h1 class="logo-text">La <span>Chilena</span></h1>
     <nav id="navbar">
       <button class="nav-btn" data-view="home">Inicio</button>
       <button class="nav-btn" data-view="catalog">Catálogo</button>
+      <button class="nav-btn" data-view="cart">Carrito 🛒</button>
       <button class="nav-btn" data-view="orders">Pedidos</button>
       <button id="loginBtn" class="nav-btn">Iniciar sesión</button>
       <button id="menuToggle" class="menu-toggle">☰</button>
     </nav>
   </header>
 
-  <!-- Contenedor principal -->
-  <main>
-    <!-- Inicio -->
-    <section id="homeView" class="view active">
-      <div class="hero">
-        <h2>Bienvenidos a <span>La Chilena</span></h2>
-        <p>Empanadas artesanales hechas con amor y sabor casero 🇨🇱</p>
-        <button class="btn primary" onclick="showView('catalog')">Ver catálogo</button>
+  <!-- VISTA: INICIO -->
+  <section id="homeView" class="view active">
+    <div class="hero">
+      <h2>Bienvenido a <span>Empanadería La Chilena</span></h2>
+      <p>Sabores tradicionales con el toque casero de siempre 🇨🇱</p>
+      <button class="btn primary" data-view="catalog" onclick="showView('catalog')">Ver catálogo</button>
+    </div>
+  </section>
+
+  <!-- VISTA: CATÁLOGO -->
+  <section id="catalogView" class="view">
+    <h2>Nuestro Catálogo</h2>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Buscar empanada...">
+      <select id="categoryFilter">
+        <option value="">Todas las categorías</option>
+      </select>
+      <select id="priceFilter">
+        <option value="">Todos los precios</option>
+        <option value="0-1500">Hasta $1.500</option>
+        <option value="1501-2000">$1.501 - $2.000</option>
+        <option value="2001-3000">Más de $2.000</option>
+      </select>
+      <button class="btn secondary" id="resetFilters">Limpiar filtros</button>
+    </div>
+    <div class="catalog-grid" id="catalogContainer"></div>
+  </section>
+
+  <!-- VISTA: CARRITO -->
+  <section id="cartView" class="view">
+    <h2>Tu Carrito 🛒</h2>
+    <p id="emptyCartMsg" style="text-align:center;">Tu carrito está vacío</p>
+    <ul id="cartList"></ul>
+    <div class="cart-summary">
+      <p><strong>Total:</strong> $<span id="cartTotal">0</span></p>
+      <button id="clearCart" class="btn secondary">Vaciar carrito</button>
+      <button id="checkoutBtn" class="btn primary">Finalizar compra</button>
+    </div>
+  </section>
+
+  <!-- VISTA: LOGIN -->
+  <section id="loginView" class="view">
+    <h2>Iniciar Sesión o Registrarse</h2>
+    <div class="login-box">
+      <input type="text" id="nameInput" placeholder="Nombre completo (solo para registrarse)">
+      <input type="email" id="emailInput" placeholder="Correo electrónico">
+      <input type="password" id="passwordInput" placeholder="Contraseña">
+      <div class="login-buttons">
+        <button id="loginUserBtn" class="btn primary">Iniciar sesión</button>
+        <button id="registerBtn" class="btn secondary">Registrarse</button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Catálogo -->
-    <section id="catalogView" class="view">
-      <h2>Nuestro Catálogo</h2>
-      <div class="filters">
-        <input type="text" id="searchInput" placeholder="Buscar empanada..." />
-        <select id="categoryFilter">
-          <option value="">Categoría</option>
-        </select>
-        <select id="priceFilter">
-          <option value="">Rango de precio</option>
-          <option value="1000-1500">$1000 - $1500</option>
-          <option value="1501-1800">$1501 - $1800</option>
-          <option value="1801-2500">$1801 - $2500</option>
-        </select>
-        <button id="resetFilters" class="btn secondary">Limpiar</button>
-      </div>
-      <div id="catalogContainer" class="catalog-grid"></div>
-    </section>
+  <!-- VISTA: PEDIDOS -->
+  <section id="ordersView" class="view">
+    <h2>Mis Pedidos</h2>
+    <div id="ordersContainer"></div>
+  </section>
 
-    <!-- Carrito -->
-    <section id="cartView" class="view">
-      <h2>Tu Carrito</h2>
-      <ul id="cartList"></ul>
-      <p id="emptyCartMsg" class="small">Tu carrito está vacío.</p>
-      <div class="cart-summary">
-        <p>Total: <strong>$<span id="cartTotal">0</span></strong></p>
-        <div class="cart-buttons">
-          <button id="clearCart" class="btn secondary">Vaciar</button>
-          <button id="checkoutBtn" class="btn primary">Finalizar compra</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Login -->
-    <section id="loginView" class="view">
-      <h2>Iniciar sesión / Registrarse</h2>
-      <div class="login-box">
-        <input type="text" id="nameInput" placeholder="Nombre completo" />
-        <input type="email" id="emailInput" placeholder="Correo electrónico" />
-        <input type="password" id="passwordInput" placeholder="Contraseña" />
-        <div class="login-buttons">
-          <button id="registerBtn" class="btn primary">Registrarse</button>
-          <button id="loginUserBtn" class="btn secondary">Iniciar sesión</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pedidos -->
-    <section id="ordersView" class="view">
-      <h2>Historial de Pedidos</h2>
-      <div id="ordersContainer"></div>
-    </section>
-  </main>
-
-  <!-- Modal -->
+  <!-- MODAL DETALLES -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span id="closeModal" class="close">&times;</span>
@@ -96,31 +90,29 @@
     </div>
   </div>
 
-  <!-- Notificaciones -->
+  <!-- NOTIFICACIÓN -->
   <div id="notification" class="notification"></div>
 
-  <!-- Pie de página -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <div>
         <h4>Contacto</h4>
-        <p>📞 +56 9 4567 8910</p>
-        <p>📍 Av. Central 123, Santiago</p>
+        <p>📍 Santiago, Chile<br>📞 +56 9 1234 5678</p>
       </div>
       <div>
-        <h4>Horarios</h4>
-        <p>Lunes a Sábado: 10:00 - 21:00</p>
-        <p>Domingos: 12:00 - 19:00</p>
+        <h4>Horario</h4>
+        <p>Lunes a Sábado<br>10:00 - 21:00 hrs</p>
       </div>
       <div>
-        <h4>Síguenos</h4>
-        <p>📘 Facebook /lachilena</p>
-        <p>📸 Instagram /empanaderialachilena</p>
+        <h4>Medios de Pago</h4>
+        <p>💵 Efectivo<br>💳 Tarjeta<br>🏦 Transferencia</p>
       </div>
     </div>
-    <p class="footer-copy">© 2025 Empanadería La Chilena — Hecho con ❤️ en Chile</p>
+    <div class="footer-copy">© 2025 Empanadería La Chilena — Todos los derechos reservados</div>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+
