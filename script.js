@@ -170,7 +170,16 @@ function showView(view) {
   if (target) target.classList.add("active");
   window.scrollTo(0, 0);
 }
-
+/* ====== Contador del carrito (NUEVO) ====== */
+function updateCartCount() {
+    const count = cart.reduce((total, item) => total + item.cantidad, 0);
+    const countElement = document.getElementById('cartCount');
+    if (countElement) {
+        countElement.textContent = count;
+        // Ocultar si está vacío
+        countElement.style.display = count > 0 ? 'block' : 'none'; 
+    }
+}
 /* ====== Catálogo (MODIFICADO: Búsqueda por Tipo e Ingredientes) ====== */
 function renderCatalog() {
   const container = document.getElementById("catalogContainer");
@@ -692,6 +701,7 @@ function saveData() {
   localStorage.setItem("resetToken", JSON.stringify(resetToken));
   localStorage.setItem("discountApplied", JSON.stringify(discountApplied));
 }
+
 
 
 
