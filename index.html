@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Empanadería La Chilena</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/701/701979.png" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/9324/9324782.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -22,17 +22,23 @@
     </nav>
   </header>
 
+  <!-- LOADER -->
+  <div id="loader" class="loader">
+    <img src="https://cdn-icons-png.flaticon.com/512/9324/9324782.png" alt="Empanada" />
+    <p>Cargando empanadas...</p>
+  </div>
+
   <!-- VISTA: INICIO -->
-  <section id="homeView" class="view active">
+  <section id="homeView" class="view active fade-in">
     <div class="hero">
       <h2>Bienvenido a <span>Empanadería La Chilena</span></h2>
       <p>Sabores tradicionales con el toque casero de siempre 🇨🇱</p>
-      <button class="btn primary" data-view="catalog" onclick="showView('catalog')">Ver catálogo</button>
+      <button class="btn primary" onclick="showView('catalog')">Ver catálogo</button>
     </div>
   </section>
 
   <!-- VISTA: CATÁLOGO -->
-  <section id="catalogView" class="view">
+  <section id="catalogView" class="view fade-in">
     <h2>Nuestro Catálogo</h2>
     <div class="filters">
       <input type="text" id="searchInput" placeholder="Buscar empanada...">
@@ -51,7 +57,7 @@
   </section>
 
   <!-- VISTA: CARRITO -->
-  <section id="cartView" class="view">
+  <section id="cartView" class="view fade-in">
     <h2>Tu Carrito 🛒</h2>
     <p id="emptyCartMsg" style="text-align:center;">Tu carrito está vacío</p>
     <ul id="cartList"></ul>
@@ -63,7 +69,7 @@
   </section>
 
   <!-- VISTA: LOGIN -->
-  <section id="loginView" class="view">
+  <section id="loginView" class="view fade-in">
     <h2>Iniciar Sesión o Registrarse</h2>
     <div class="login-box">
       <input type="text" id="nameInput" placeholder="Nombre completo (solo para registrarse)">
@@ -77,7 +83,7 @@
   </section>
 
   <!-- VISTA: PEDIDOS -->
-  <section id="ordersView" class="view">
+  <section id="ordersView" class="view fade-in">
     <h2>Mis Pedidos</h2>
     <div id="ordersContainer"></div>
   </section>
@@ -92,6 +98,9 @@
 
   <!-- NOTIFICACIÓN -->
   <div id="notification" class="notification"></div>
+
+  <!-- BOTÓN FLOTANTE DEL CARRITO -->
+  <button id="floatingCart" class="floating-cart" onclick="showView('cart')">🛒</button>
 
   <!-- FOOTER -->
   <footer>
@@ -113,6 +122,16 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Loader inicial
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 500);
+    });
+  </script>
 </body>
 </html>
+
+
 
