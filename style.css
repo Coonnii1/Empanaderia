@@ -1,5 +1,5 @@
 /* =============================
-   Estilos principales - La Chilena v2.0
+   Estilos principales - La Chilena v5.1
    ============================= */
 
 body {
@@ -73,7 +73,7 @@ nav {
   display: none;
   padding: 40px 20px;
   max-width: 900px;
-  margin: auto;
+  margin: 40px auto;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
@@ -127,13 +127,22 @@ nav {
   margin: 10px 0 25px 0;
 }
 
-/* ====== Catálogo ====== */
+/* ====== Catálogo Principal ====== */
 .catalog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
 }
 
+/* ====== Catálogo Acompañamientos ====== */
+.accompaniment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Más pequeños */
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* ====== Tarjeta de Item ====== */
 .item-card {
   background: #fffdf9;
   border-radius: 16px;
@@ -141,6 +150,11 @@ nav {
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform 0.3s;
+}
+
+.item-card.accompaniment {
+  background: #fdf6e8; /* Un color un poco distinto para diferenciarlos */
+  padding: 10px;
 }
 
 .item-card:hover {
@@ -152,6 +166,10 @@ nav {
   height: 160px;
   object-fit: cover;
   border-radius: 12px;
+}
+
+.item-card.accompaniment img {
+  height: 100px;
 }
 
 .item-card h4 {
@@ -192,7 +210,6 @@ nav {
 }
 
 .cart-summary {
-  text-align: right;
   margin-top: 20px;
 }
 
@@ -329,7 +346,7 @@ footer {
     padding: 25px 15px;
   }
 
-  .catalog-grid {
+  .catalog-grid, .accompaniment-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -367,7 +384,7 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ====== Botón flotante carrito ====== */
+/* ====== Botón flotante carrito (Con Contador) ====== */
 .floating-cart {
   position: fixed;
   bottom: 20px;
@@ -383,63 +400,27 @@ footer {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: transform 0.2s ease;
   z-index: 90;
+  position: relative; 
 }
+
 .floating-cart:hover {
   transform: scale(1.1);
 }
 
-/* ====== Loader ====== */
-.loader {
-  position: fixed;
-  inset: 0;
-  background: #fffaf3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 1.2em;
-  z-index: 999;
-  transition: opacity 0.5s ease;
-}
-.loader img {
-  width: 90px;
-  animation: spin 2s infinite linear;
-  margin-bottom: 10px;
-}
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* ====== Efecto Fade-in ====== */
-.fade-in {
-  animation: fadeIn 0.5s ease-in;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ====== Botón flotante carrito ====== */
-.floating-cart {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #c0392b;
+/* ====== Estilo para el Contador del Carrito ====== */
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4757; /* Rojo para destacar */
   color: white;
-  border: none;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 1.8em;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease;
-  z-index: 90;
+  padding: 3px 7px;
+  font-size: 0.5em;
+  font-weight: bold;
+  line-height: 1;
+  border: 2px solid white;
+  min-width: 10px;
+  text-align: center;
 }
-.floating-cart:hover {
-  transform: scale(1.1);
-}
-
 
