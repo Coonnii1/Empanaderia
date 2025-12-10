@@ -387,3 +387,57 @@ footer {
 .floating-cart:hover {
   transform: scale(1.1);
 }
+
+/* ====== Loader ====== */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: #fffaf3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.2em;
+  z-index: 999;
+  transition: opacity 0.5s ease;
+}
+.loader img {
+  width: 90px;
+  animation: spin 2s infinite linear;
+  margin-bottom: 10px;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ====== Efecto Fade-in ====== */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== Botón flotante carrito ====== */
+.floating-cart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.8em;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+  z-index: 90;
+}
+.floating-cart:hover {
+  transform: scale(1.1);
+}
