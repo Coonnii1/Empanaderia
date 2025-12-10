@@ -11,7 +11,7 @@ const PRODUCTS = [
     precio: 1500,
     ingredientes: "Carne, cebolla, huevo duro, aceitunas y pasas.",
     tipo: "Horno",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://www.tipicochileno.cl/wp-content/uploads/2021/05/empanada-chilena-1200-628.jpg",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 },
       { id: "aji", name: "Ají", price: 200 },
@@ -25,7 +25,7 @@ const PRODUCTS = [
     precio: 1300,
     ingredientes: "Masa dorada rellena de queso derretido.",
     tipo: "Frita",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://i.ytimg.com/vi/RKZrqSeSXEE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA2wr8xqXSJ-2cCYBWDP5MYq8xqLA",
     extras: [
       { id: "mayo", name: "Mayonesa", price: 200 },
       { id: "ketchup", name: "Ketchup", price: 200 }
@@ -38,7 +38,7 @@ const PRODUCTS = [
     precio: 1800,
     ingredientes: "Queso, tomate y orégano al estilo napolitano.",
     tipo: "Horno",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLDdIXFqZ1-YaVCciF3hIAn_5-vRfzwM5tbg&s",
     extras: [
       { id: "queso", name: "Queso extra", price: 400 },
       { id: "bebida", name: "Bebida 500ml", price: 1000 }
@@ -51,7 +51,7 @@ const PRODUCTS = [
     precio: 1600,
     ingredientes: "Pollo desmenuzado con cebolla y condimentos suaves.",
     tipo: "Horno",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://campollo.com/wp-content/uploads/2024/08/RECETA-DE-EMPANADAS-DE-POLLO-AGOSTO-scaled.jpg",
     extras: [
       { id: "salsa", name: "Salsa BBQ", price: 250 }
     ]
@@ -63,7 +63,7 @@ const PRODUCTS = [
     precio: 1400,
     ingredientes: "Verduras salteadas, champiñones y especias naturales.",
     tipo: "Frita",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://media-cdn.tripadvisor.com/media/photo-s/1c/b9/89/7b/empanada-vegetariana.jpg",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 }
     ]
@@ -75,7 +75,7 @@ const PRODUCTS = [
     precio: 2200,
     ingredientes: "Relleno de mariscos frescos con crema y especias.",
     tipo: "Horno",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2lgMte0jg9vit7VkGL5Iy8fedL7G8MbrYwQ&s",
     extras: [
       { id: "limon", name: "Limón extra", price: 150 }
     ]
@@ -87,7 +87,7 @@ const PRODUCTS = [
     precio: 2500,
     ingredientes: "Camarones salteados en mantequilla con queso mantecoso.",
     tipo: "Frita",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://www.chefandcook.cl/carta/camaron-queso-fritas.jpg",
     extras: [
       { id: "limon", name: "Limón extra", price: 150 }
     ]
@@ -99,7 +99,7 @@ const PRODUCTS = [
     precio: 1700,
     ingredientes: "Champiñones frescos salteados con mezcla de quesos.",
     tipo: "Horno",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://cdnx.jumpseller.com/lashermanaschicureo/image/57887757/emp_champi_on.jpg?1733160292",
     extras: [
       { id: "salsa", name: "Salsa de ajo", price: 250 }
     ]
@@ -111,7 +111,7 @@ const PRODUCTS = [
     precio: 1450,
     ingredientes: "Acelga cocida y cremosa con abundante queso.",
     tipo: "Frita",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://www.clarin.com/img/2023/04/25/Gc7v0hFUU_1256x620__2.jpg",
     extras: []
   },
   {
@@ -121,7 +121,7 @@ const PRODUCTS = [
     precio: 2100,
     ingredientes: "Carne mechada deshilachada con cebolla caramelizada.",
     tipo: "Horno",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRje62PefsWjkW_fVWxGpwi-fOH16QYnnwRNw&s",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 }
     ]
@@ -692,6 +692,7 @@ function saveData() {
   localStorage.setItem("resetToken", JSON.stringify(resetToken));
   localStorage.setItem("discountApplied", JSON.stringify(discountApplied));
 }
+
 
 
 
