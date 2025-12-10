@@ -10,7 +10,7 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1500,
     ingredientes: "Carne, cebolla, huevo duro, aceitunas y pasas.",
-    img: "https://cdn-icons-png.flaticon.com/512/9324/9324782.png",
+    img: "https://i.pinimg.com/originals/b7/93/d6/b793d677617f191376d65c804488b082.jpg",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 },
       { id: "aji", name: "Ají", price: 200 },
@@ -398,6 +398,7 @@ function saveData() {
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   localStorage.setItem("orders", JSON.stringify(orders));
 }
+
 
 
 
