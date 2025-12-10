@@ -1,8 +1,8 @@
 /* ===========================
-   Empanadería La Chilena v2.0
+   Empanadería La Chilena v2.1
    =========================== */
 
-/* ====== Productos ====== */
+/* ====== Productos (con dibujos ilustrados) ====== */
 const PRODUCTS = [
   {
     id: 1,
@@ -10,7 +10,7 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1500,
     ingredientes: "Carne, cebolla, huevo duro, aceitunas y pasas.",
-    img: "https://images.unsplash.com/photo-1601050690597-2b1a4c5b45b1?auto=format&fit=crop&w=600&q=80",
+    img: "https://cdn-icons-png.flaticon.com/512/9324/9324782.png",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 },
       { id: "aji", name: "Ají", price: 200 },
@@ -23,7 +23,7 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1300,
     ingredientes: "Masa dorada rellena de queso derretido.",
-    img: "https://images.unsplash.com/photo-1617196034796-73a52b50c8f6?auto=format&fit=crop&w=600&q=80",
+    img: "https://cdn-icons-png.flaticon.com/512/7859/7859429.png",
     extras: [
       { id: "mayo", name: "Mayonesa", price: 200 },
       { id: "ketchup", name: "Ketchup", price: 200 }
@@ -35,7 +35,7 @@ const PRODUCTS = [
     categoria: "Especiales",
     precio: 1800,
     ingredientes: "Queso, tomate y orégano al estilo napolitano.",
-    img: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80",
+    img: "https://cdn-icons-png.flaticon.com/512/7986/7986330.png",
     extras: [
       { id: "queso", name: "Queso extra", price: 400 },
       { id: "bebida", name: "Bebida 500ml", price: 1000 }
@@ -47,7 +47,7 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1600,
     ingredientes: "Pollo desmenuzado con cebolla y condimentos suaves.",
-    img: "https://images.unsplash.com/photo-1605475128011-9315b76e7a3d?auto=format&fit=crop&w=600&q=80",
+    img: "https://cdn-icons-png.flaticon.com/512/11453/11453439.png",
     extras: [
       { id: "salsa", name: "Salsa BBQ", price: 250 }
     ]
@@ -58,7 +58,7 @@ const PRODUCTS = [
     categoria: "Veganas",
     precio: 1400,
     ingredientes: "Verduras salteadas, champiñones y especias naturales.",
-    img: "https://images.unsplash.com/photo-1612874747270-661b478d8b4d?auto=format&fit=crop&w=600&q=80",
+    img: "https://cdn-icons-png.flaticon.com/512/9726/9726197.png",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 }
     ]
@@ -69,7 +69,7 @@ const PRODUCTS = [
     categoria: "Premium",
     precio: 2200,
     ingredientes: "Relleno de mariscos frescos con crema y especias.",
-    img: "https://images.unsplash.com/photo-1590080875831-f9c93d33f5dc?auto=format&fit=crop&w=600&q=80",
+    img: "https://cdn-icons-png.flaticon.com/512/9834/9834698.png",
     extras: [
       { id: "limon", name: "Limón extra", price: 150 }
     ]
@@ -93,12 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* ====== Navegación ====== */
 function setupNav() {
-  const navBtns = document.querySelectorAll(".nav-btn");
-  navBtns.forEach(btn => {
+  document.querySelectorAll(".nav-btn").forEach(btn => {
     const view = btn.dataset.view;
     if (view) btn.onclick = () => showView(view);
   });
-
   document.getElementById("menuToggle").onclick = () => {
     document.getElementById("navbar").classList.toggle("show");
   };
@@ -369,3 +367,5 @@ function saveData() {
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   localStorage.setItem("orders", JSON.stringify(orders));
 }
+
+
