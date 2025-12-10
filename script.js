@@ -1,8 +1,8 @@
 /* ===========================
-   Empanadería La Chilena v2.1
+   Empanadería La Chilena v3.0
    =========================== */
 
-/* ====== Productos (con dibujos ilustrados) ====== */
+/* ====== Productos (dibujos ilustrados) ====== */
 const PRODUCTS = [
   {
     id: 1,
@@ -10,6 +10,7 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1500,
     ingredientes: "Carne, cebolla, huevo duro, aceitunas y pasas.",
+    img: "https://cdn-icons-png.flaticon.com/512/9324/9324782.png",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 },
       { id: "aji", name: "Ají", price: 200 },
@@ -22,6 +23,7 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1300,
     ingredientes: "Masa dorada rellena de queso derretido.",
+    img: "https://cdn-icons-png.flaticon.com/512/7859/7859429.png",
     extras: [
       { id: "mayo", name: "Mayonesa", price: 200 },
       { id: "ketchup", name: "Ketchup", price: 200 }
@@ -33,6 +35,7 @@ const PRODUCTS = [
     categoria: "Especiales",
     precio: 1800,
     ingredientes: "Queso, tomate y orégano al estilo napolitano.",
+    img: "https://cdn-icons-png.flaticon.com/512/7986/7986330.png",
     extras: [
       { id: "queso", name: "Queso extra", price: 400 },
       { id: "bebida", name: "Bebida 500ml", price: 1000 }
@@ -44,6 +47,7 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1600,
     ingredientes: "Pollo desmenuzado con cebolla y condimentos suaves.",
+    img: "https://cdn-icons-png.flaticon.com/512/11453/11453439.png",
     extras: [
       { id: "salsa", name: "Salsa BBQ", price: 250 }
     ]
@@ -54,6 +58,7 @@ const PRODUCTS = [
     categoria: "Veganas",
     precio: 1400,
     ingredientes: "Verduras salteadas, champiñones y especias naturales.",
+    img: "https://cdn-icons-png.flaticon.com/512/9726/9726197.png",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 }
     ]
@@ -64,6 +69,7 @@ const PRODUCTS = [
     categoria: "Premium",
     precio: 2200,
     ingredientes: "Relleno de mariscos frescos con crema y especias.",
+    img: "https://cdn-icons-png.flaticon.com/512/9834/9834698.png",
     extras: [
       { id: "limon", name: "Limón extra", price: 150 }
     ]
@@ -189,56 +195,20 @@ document.getElementById("modal").onclick = e => {
 };
 
 /* ====== Carrito ====== */
-function confirmOrder() {
-  const metodo = document.querySelector("input[name='pago']:checked").value;
-  const order = {
-    id: "PED-" + Date.now(),
-    user: currentUser.email,
-    items: cart,
-    total: calcTotal(),
-    metodo,
-    date: new Date().toLocaleString()
-  };
+function addToCart(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  const qty = parseInt(document.getElementById("qty").value);
+  const extras = [...document.querySelectorAll("#modalBody input[type=checkbox]:checked")].map(ch => {
+    const ex = p.extras.find(e => e.id === ch.value);
+    return { name: ex.name, price: ex.price };
+  });
 
-  orders.push(order);
-  cart = [];
+  cart.push({ id: p.id, nombre: p.nombre, cantidad: qty, extras, precio: p.precio });
   saveData();
   renderCart();
-
-  // Crear texto dinámico según método
-  let mensaje = "";
-  if (metodo === "efectivo") {
-    mensaje = "Podrás pagar al momento de retirar tu pedido 💵";
-  } else if (metodo === "transferencia") {
-    mensaje = `
-      Realiza tu transferencia a:<br>
-      <strong>Banco Estado</strong><br>
-      Cuenta: 12345678<br>
-      Titular: Empanadería La Chilena<br>
-      Correo: pagos@lachilena.cl
-    `;
-  } else if (metodo === "tarjeta") {
-    mensaje = "Serás redirigido al pago con tarjeta al momento del retiro 💳";
-  }
-
-  // Mostrar vista de confirmación
-  const container = document.getElementById("paymentContainer");
-  container.innerHTML = `
-    <h3>✅ Pedido confirmado</h3>
-    <p><strong>N° Pedido:</strong> ${order.id}</p>
-    <p><strong>Método de pago:</strong> ${metodo.toUpperCase()}</p>
-    <p>${mensaje}</p>
-    <p><strong>Total pagado:</strong> $${order.total.toLocaleString()}</p>
-    <p>Gracias por tu compra 🥟</p>
-    <button class="btn primary" onclick="showView('catalog')">Volver al Catálogo</button>
-    <button class="btn secondary" onclick="showView('orders')">Ver mis pedidos</button>
-  `;
-
+  notify("✅ Producto agregado al carrito");
   document.getElementById("modal").classList.remove("active");
-  showView("payment");
-  notify("🎉 Pedido confirmado con " + metodo);
 }
-
 
 function renderCart() {
   const list = document.getElementById("cartList");
@@ -300,6 +270,7 @@ function checkout() {
   modal.classList.add("active");
 }
 
+/* ====== Confirmación de pago ====== */
 function confirmOrder() {
   const metodo = document.querySelector("input[name='pago']:checked").value;
   const order = {
@@ -310,12 +281,42 @@ function confirmOrder() {
     metodo,
     date: new Date().toLocaleString()
   };
+
   orders.push(order);
   cart = [];
   saveData();
   renderCart();
-  notify("✅ Pedido confirmado (" + metodo + ")");
+
+  let mensaje = "";
+  if (metodo === "efectivo") {
+    mensaje = "💵 Podrás pagar al momento de retirar tu pedido.";
+  } else if (metodo === "transferencia") {
+    mensaje = `
+      🏦 Realiza tu transferencia a:<br>
+      <strong>Banco Estado</strong><br>
+      Cuenta: 12345678<br>
+      Titular: Empanadería La Chilena<br>
+      Correo: pagos@lachilena.cl
+    `;
+  } else if (metodo === "tarjeta") {
+    mensaje = "💳 Pago con tarjeta al momento del retiro.";
+  }
+
+  const container = document.getElementById("paymentContainer");
+  container.innerHTML = `
+    <h3>✅ Pedido confirmado</h3>
+    <p><strong>N° Pedido:</strong> ${order.id}</p>
+    <p><strong>Método de pago:</strong> ${metodo.toUpperCase()}</p>
+    <p>${mensaje}</p>
+    <p><strong>Total:</strong> $${order.total.toLocaleString()}</p>
+    <p>Gracias por tu compra 🥟</p>
+    <button class="btn primary" onclick="showView('catalog')">Volver al Catálogo</button>
+    <button class="btn secondary" onclick="showView('orders')">Ver mis pedidos</button>
+  `;
+
   document.getElementById("modal").classList.remove("active");
+  showView("payment");
+  notify("🎉 Pedido confirmado con " + metodo);
 }
 
 /* ====== Login / Registro ====== */
@@ -397,6 +398,8 @@ function saveData() {
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   localStorage.setItem("orders", JSON.stringify(orders));
 }
+
+
 
 
 
