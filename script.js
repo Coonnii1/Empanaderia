@@ -10,7 +10,6 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1500,
     ingredientes: "Carne, cebolla, huevo duro, aceitunas y pasas.",
-    img: "https://cdn-icons-png.flaticon.com/512/9324/9324782.png",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 },
       { id: "aji", name: "Ají", price: 200 },
@@ -23,7 +22,6 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1300,
     ingredientes: "Masa dorada rellena de queso derretido.",
-    img: "https://cdn-icons-png.flaticon.com/512/7859/7859429.png",
     extras: [
       { id: "mayo", name: "Mayonesa", price: 200 },
       { id: "ketchup", name: "Ketchup", price: 200 }
@@ -35,7 +33,6 @@ const PRODUCTS = [
     categoria: "Especiales",
     precio: 1800,
     ingredientes: "Queso, tomate y orégano al estilo napolitano.",
-    img: "https://cdn-icons-png.flaticon.com/512/7986/7986330.png",
     extras: [
       { id: "queso", name: "Queso extra", price: 400 },
       { id: "bebida", name: "Bebida 500ml", price: 1000 }
@@ -47,7 +44,6 @@ const PRODUCTS = [
     categoria: "Clásicas",
     precio: 1600,
     ingredientes: "Pollo desmenuzado con cebolla y condimentos suaves.",
-    img: "https://cdn-icons-png.flaticon.com/512/11453/11453439.png",
     extras: [
       { id: "salsa", name: "Salsa BBQ", price: 250 }
     ]
@@ -58,7 +54,6 @@ const PRODUCTS = [
     categoria: "Veganas",
     precio: 1400,
     ingredientes: "Verduras salteadas, champiñones y especias naturales.",
-    img: "https://cdn-icons-png.flaticon.com/512/9726/9726197.png",
     extras: [
       { id: "pebre", name: "Pebre", price: 300 }
     ]
@@ -69,7 +64,6 @@ const PRODUCTS = [
     categoria: "Premium",
     precio: 2200,
     ingredientes: "Relleno de mariscos frescos con crema y especias.",
-    img: "https://cdn-icons-png.flaticon.com/512/9834/9834698.png",
     extras: [
       { id: "limon", name: "Limón extra", price: 150 }
     ]
@@ -367,5 +361,6 @@ function saveData() {
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   localStorage.setItem("orders", JSON.stringify(orders));
 }
+
 
 
