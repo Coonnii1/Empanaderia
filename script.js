@@ -35,7 +35,7 @@ const PRODUCTS = [
     categoria: "Especiales",
     precio: 1800,
     ingredientes: "Queso, tomate y orégano al estilo napolitano.",
-    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg,
+    img: "https://www.shutterstock.com/image-vector/traditional-south-american-empanadas-meat-600nw-2667749965.jpg",
     extras: [
       { id: "queso", name: "Queso extra", price: 400 },
       { id: "bebida", name: "Bebida 500ml", price: 1000 }
@@ -398,6 +398,7 @@ function saveData() {
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   localStorage.setItem("orders", JSON.stringify(orders));
 }
+
 
 
 
